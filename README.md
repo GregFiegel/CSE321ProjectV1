@@ -22,17 +22,32 @@ The button mappings for the controller are as follows:
 PS5            >     N64
 ======================================================
 X              >     A
+
 Square         >     B
+
 LB             >     Z
+
 Menu           >     Start
+
 Up             >     Up
+
 Down           >     Down
+
 Left           >     Left
+
 Right          >     Right
+
 LT             >     L
+
 RB             >     R
+
 R-Stick Up     >     C Up
+
 R-Stick Down   >     C Down
+
 R-Stick Left   >     C Left
+
 R-Stick Right  >     C Right
+
 L-Stick        >     Analog Stick
+
