@@ -53,8 +53,10 @@ void setup(){
 
 void loop(){
   Usb.Task();
-  Serial.print(("\r\nLoop number:"));
-  Serial.print(i);
+  //Serial.print(("\r\nLoop number:"));
+  //Serial.print(i);
+
+  
   if (requestRecieved){
       Serial.print("\r\nRequest Flag set");
       sendResponse(response);
@@ -62,6 +64,9 @@ void loop(){
       requestRecieved = false;
       Serial.print("\r\nrequestRecieved = false");
     }
+  
+
+  sendResponse(response);
   
   //int pinState = digitalRead(DATA_PIN);
   //Serial.print("\r\nrequestRecieved: ");
@@ -81,10 +86,6 @@ void loop(){
       Serial.print(response, BIN);
     }
   }
-
-  //if (pinState == LOW) {
-  //  consoleRequestDetected();
-  //}
 }
 
 void pollControllerInput(){
@@ -229,12 +230,10 @@ void consoleRequestDetected(){
 
 void sendResponse(uint32_t response){
   pinMode(DATA_PIN, OUTPUT);
-  
   //send each bit
   for (bool bit : bitSeq){
     sendBit(bit);
   }
-
   pinMode(DATA_PIN, INPUT);
 }
 
@@ -259,8 +258,9 @@ void buildBitSeq(){
 
 void sendBit(bool bit){
   if(bit){
-    PIOB->PIO_SODR = PIO_PB12; //Set pin mode to input (keep line high)
+    digitalWrite(DATA_PIN, HIGH);
   }else{
-    PIOB->PIO_CODR = PIO_PB12; //Set pin mode to output (drive line low)                  ` ` 1             Q       
+    digitalWrite(DATA_PIN, LOW);
+  }
 delayMicroseconds(1);
 }
